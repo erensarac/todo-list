@@ -1,44 +1,62 @@
 console.log("Hello World!")
-const toDoContainer = document.querySelector("#todo-container")
+const todoContainer = document.querySelector("#todo-container")
 const button = document.querySelector("#create-todo-btn")
-
-document.addEventListener("DOMContentLoaded", getLS)
-
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // Months Array
-let day = new Date().getDate()
-let month = months[new Date().getMonth()]
-let year = new Date().getFullYear()
+document.addEventListener("DOMContentLoaded", (todo) => {
+    let todos
+    if (localStorage.getItem("todos") == ""){
+        todos = []
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"))
+    }
+    todos.forEach((todo)=> {
+        createTodo(todo)
+    })
+})
+
+function createTodo (inputValue, fullTime){
+    const todoInput = document.querySelector("#todo-input")
+    let listItem = document.createElement("LI")
+    let todoTextContent = document.createElement("DIV")
+    let todoControl = document.createElement("DIV")
+    let pElement = document.createElement("P")
+    let dateText = document.createElement("SPAN")
+    let completeIcon = document.createElement("I")
+    // let deleteIcon = document.createElement("I")
+    todoContainer.appendChild(listItem)
+    listItem.append(todoControl,todoTextContent)
+    todoTextContent.append(pElement, dateText)
+    todoControl.append(completeIcon)
+    listItem.classList.add("todolist-item")
+    todoTextContent.classList.add("todo-text")
+    todoControl.classList.add("todo-control")
+    completeIcon.classList.add("checkbox", "icons", "uncompleted", "ri-checkbox-blank-line")
+    // deleteIcon.classList.add("delete", "icons", "ri-close-line")
+    completeIcon.setAttribute("id", "complete-btn")
+    // deleteIcon.setAttribute("id", "delete-btn")
+    dateText.textContent = fullTime
+    pElement.textContent = inputValue
+    todoInput.value = ""
+}
 
 button.addEventListener("click", ()=> { // Create todo item
-    const todoInput = document.querySelector("#todo-input")
+    const todoInput = document.querySelector("#todo-input").value
 
-    if(todoInput.value == ""){
+    let time = [
+        new Date().getHours(),
+        new Date().getMinutes(),
+        new Date().getDay(),
+        months[new Date().getMonth()],
+        new Date().getFullYear()
+    ]
+    let fullTime = `${time[0]}:${time[1]}, ${time[2]} ${time[3]} ${time[4]}`
+
+    if(todoInput == ""){
         alert("Please fill input for todo!")
     } else {
-        let liElement = document.createElement("li")
-        let pElement = document.createElement("p")
-        let completeIcon = document.createElement("I")
-        let deleteIcon = document.createElement("I")
-        let dateText = document.createElement("span")
-        
-        toDoContainer.appendChild(liElement)
-        liElement.appendChild(completeIcon)
-        liElement.appendChild(deleteIcon)
-        liElement.appendChild(pElement)
-        liElement.appendChild(dateText)
 
-        liElement.classList.add("todolist-item")
-        pElement.classList.add("todo-text")
-        completeIcon.classList.add("checkbox", "icons", "ri-checkbox-blank-circle-line")
-        deleteIcon.classList.add("delete", "icons", "ri-close-line")
-        completeIcon.setAttribute("id", "complete-btn")
-        deleteIcon.setAttribute("id", "delete-btn")
-
-        pElement.textContent = todoInput.value
-        dateText.textContent = `Created on ${day} ${month} ${year}`
-        
-        saveLS(todoInput.value)
-        todoInput.value = ""
+        createTodo(todoInput, fullTime)
+        saveLS(todoInput)
 
         const deleteBtn = document.querySelectorAll(".delete")  // Delete Todo Button
         deleteBtn.forEach( (e) => {
@@ -54,12 +72,12 @@ button.addEventListener("click", ()=> { // Create todo item
                 console.log("Check Todo Button is working.")
                 let checkBtn = document.querySelectorAll(".checkbox")
                 if (isClicked === false){
-                    e.classList.remove("ri-checkbox-blank-circle-line")
-                    e.classList.add("ri-checkbox-circle-fill")
+                     e.classList.remove("ri-checkbox-blank-line")
+                    e.classList.add("ri-checkbox-fill")
                     isClicked = true
                 } else {
-                    e.classList.remove("ri-checkbox-circle-fill")
-                    e.classList.add("ri-checkbox-blank-circle-line")
+                    e.classList.remove("ri-checkbox-fill")
+                    e.classList.add("ri-checkbox-blank-line")
                     isClicked = false
                 }
             })
@@ -67,7 +85,7 @@ button.addEventListener("click", ()=> { // Create todo item
     }
 })
 
-function saveLS(todo) {     // Save Local Storage
+function saveLS(todo) {
     let todos
     if (localStorage.getItem("todos") === null){
         todos = []
@@ -76,38 +94,4 @@ function saveLS(todo) {     // Save Local Storage
     }
     todos.push(todo)
     localStorage.setItem("todos", JSON.stringify(todos))
-}
-
-function getLS(todo) {  // Get Local Storage
-    let todos
-    if (localStorage.getItem("todos") === null){
-        todos = []
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"))
-    }
-    todos.forEach((todo)=> { // Create todo item for localStorage
-        let liElement = document.createElement("li")
-        let pElement = document.createElement("p")
-        let completeIcon = document.createElement("I")
-        let deleteIcon = document.createElement("I")
-        let dateText = document.createElement("span")
-
-        toDoContainer.appendChild(liElement)
-        liElement.appendChild(completeIcon)
-        liElement.appendChild(deleteIcon)
-        liElement.appendChild(pElement)
-        liElement.appendChild(dateText)
-
-        liElement.classList.add("todolist-item")
-        pElement.classList.add("todo-text")
-
-        completeIcon.setAttribute("id", "complete-btn")
-        completeIcon.classList.add("checkbox", "icons", "ri-checkbox-blank-circle-line")
-
-        deleteIcon.setAttribute("id", "delete-btn")
-        deleteIcon.classList.add("delete", "icons", "ri-close-line")
-
-        pElement.textContent = todo 
-        dateText.textContent = `Created on ${day} ${month} ${year}`
-    })
 }
