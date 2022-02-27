@@ -1,20 +1,16 @@
 <!doctype html>
-<!-- Bu websitesinin kaynak kodlarina github uzerinden ulasabilirsiniz. -->
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Todo List</title>
+   <title>My Todo List</title>
    <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="shortcss.css">
-   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+   <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-   <!-- Google Font : Rubik -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap" rel="stylesheet">
-   <!-- Remix Icons -->
    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> 
 </head>
 <body>
@@ -25,12 +21,14 @@
                 <input id="todo-input" type="text" maxlength="90" placeholder="Write your todo list item on here."></inp>
                 <button id="create-todo-btn" class="todo-button">
                     <i class="icon add ri-add-line"></i>
-                    <span>Create New One</span>
                 </button>
             </div>
         </header>
         <ul id="todo-container"></ul>
     </main>
+    <div class="info">
+        <p>You can access the source code of this website on <a href="https://github.com/erensarac/todo-list" target="_blank">github</a>.</p>
+    </div>
     <script src="./app.js"></script>
 </body>
 </html>
