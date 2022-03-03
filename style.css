@@ -243,6 +243,12 @@ body {
 
 .todolist-item .todo-control .icons.checkbox.ri-checkbox-blank-line:hover {
   color: #2ecc71;
+  background-color: #2ecc7120;
+  border-radius: 5px;
+}
+
+.todolist-item .todo-control .icons.checkbox.ri-checkbox-blank-line:active {
+  background-color: #2ecc7130;
 }
 
 .todolist-item .todo-control .icons.checkbox.ri-checkbox-fill {
