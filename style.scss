@@ -155,6 +155,11 @@ body {
          color: #999;
          &:hover {
             color: #2ecc71;
+            background-color: #2ecc7120;
+            border-radius: 5px;
+         }
+         &:active {
+            background-color: #2ecc7130;
          }
      }
      .icons.checkbox.ri-checkbox-fill {
@@ -181,9 +186,6 @@ body {
       }
    }
 }
-
-
-// Popup Alert CSS
 .alert {
    top: 2vw;
    right: 2vw;
@@ -216,9 +218,6 @@ body {
       border: 1px solid #ffeeba;
    }
 }
-
-
-
 .completed-todo {
    opacity: 30%;
    p {
