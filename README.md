@@ -1,14 +1,10 @@
 # Todo List
-
 You can create to-do lists with a minimal and easy to use.
 
 ## Demo
 [Github Pages](https://erensarac.github.io/todo-list)
 
-
-## License
-
-MIT License
+## MIT License
 
 Copyright (c) 2022 Eren Saraç
 
