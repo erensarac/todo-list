@@ -1,3 +1,4 @@
+// RESET CSS //
 *,
 *::before,
 *::after {
@@ -5,9 +6,11 @@
     margin: 0;
     padding: 0;
 }
+// NO SCROLLBAR //
 ::-webkit-scrollbar {
     display: none;
 }
+// HTML BODY //
 body {
    font-size: 16px;
    list-style: none;
@@ -19,20 +22,23 @@ body {
    justify-content: center;
    align-items: center;
 }
+// APP //
 .app {
    margin: 10px auto;
-   padding-top: 30px;
+   padding-top: 50px;
    padding-left: 2vw;
    padding-right: 2vw;
    width: 80%;
    min-height: 100vh;
 }
+// TODO TITLE //
 #todo-list-title {
    color: rgb(0, 0, 0);
    margin-bottom: 20px;
    font-weight: 300;
    font-size: 36px;
 }
+// INPUT HEADER //
 #input-header {
    margin-bottom: 10px;
    width: 100%;
@@ -40,6 +46,7 @@ body {
    border: 1px solid rgba(0, 0, 0, 0.2);
    border-radius: 5px;
 }
+// INPUT CONTAINER //
 #input-container {
    display: flex;
    color: #fff;
@@ -50,11 +57,12 @@ body {
    height: 55px;
    position: relative;
    border-radius: 5px;
-   &:Hover {
+   &:hover {
       background-color:#f4f2f6;
       outline: 1px solid #00000080;
    }
 }
+// TODO INPUT FOR TODO MESSAGE //
 #todo-input {
    text-align: left;
    width: 100%;
@@ -78,6 +86,7 @@ body {
       opacity: .5;
    }
 }
+// CREATE TODO BUTTON //
 .todo-button {
    position: absolute;
    right: 0;
@@ -117,6 +126,7 @@ body {
       padding-right: 5px;
    }
 }
+// TODO CONTAINER //
 #todo-container {
    display: flex;
    flex-direction: column;
@@ -125,6 +135,7 @@ body {
    border-right: 1px solid #ffffff10;
    width: 100%;
 }
+// TODO ITEMS //
 .todolist-item {
    margin: 10px;
    padding: 20px 20px;
@@ -186,10 +197,13 @@ body {
       }
    }
 }
+// POP-UP ALERT //
 .alert {
-   top: 2vw;
-   right: 2vw;
+   top: 0;
+   right: 0;
+   left: 0;
    display: flex;
+   width: 100%;
    position: fixed;
    justify-content: center;
    align-items: center;
@@ -202,6 +216,7 @@ body {
    font-size: 16px;
    opacity: 0;
    font-weight: 500;
+   animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
    &.success {
       color: #257953;
       background-color: #effaf5;
@@ -214,7 +229,7 @@ body {
    }
    &.warn {
       color: #946c00;
-      background-color: #fffaeb;
+      background-color: #fff7dd;
       border: 1px solid #ffeeba;
    }
 }
@@ -224,12 +239,12 @@ body {
       text-decoration: line-through;
    }
 }
+// SOURCE CODE INFO DIV //
 .info {
    padding: 10px;
    margin-bottom: 10px;
    display: flex;
    justify-content: center;
-
    p {
       opacity: 70%;
       color: #999;
@@ -239,5 +254,16 @@ body {
          font-weight: 500;
          text-decoration: none;
       }
+   }
+}
+// KEYFRAMES //
+@keyframes slide-in-top {
+   0% {
+      transform: translateY(-1000px);
+      opacity: 0;
+   }
+   100% {
+      transform: translateY(0);
+      opacity: 1;
    }
 }
