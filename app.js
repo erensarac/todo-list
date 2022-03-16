@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", (todo) => {
         for (let i = 0; i < todos.length; i++){
             createTodo(todos[i].name, todos[i].createdDate, todos[i].isCompleted)
         }
-    } checkTodo()
+    } CHECK_TODO()
 })
 
 button.addEventListener("click", ()=> { 
@@ -27,7 +27,7 @@ button.addEventListener("click", ()=> {
     } else {
         createTodo(todoInput, fullTime)
         saveLS(todoInput, fullTime)
-        checkTodo()
+        CHECK_TODO()
         alertMsg("success", "Todo has been successfully created.")
     }
 })
@@ -54,25 +54,28 @@ function createTodo(inputValue, time, isCompleted){
     todoInput.value = ""
 }
 
-function checkTodo(){ //
+function CHECK_TODO(){
     let checkBtn = document.querySelectorAll(".checkbox")
     checkBtn.forEach(function(e){
-        let isCompleted = false
-        e.addEventListener("click", ()=>{
+        e.addEventListener("click", () => {
             console.log("Check Todo Button is working.")
-            if (isCompleted == false){
-                e.classList.remove("ri-checkbox-blank-line")
-                e.classList.add("ri-checkbox-fill")
-                let parent = e.parentElement
-                parent.parentElement.classList.add("completed-todo")
-                isCompleted = true
+            todoID = e.parentElement.id
+            let todos
+            if (localStorage.getItem("todos") === null){todos = []} 
+            else {todos = JSON.parse(localStorage.getItem("todos"))}
+            index = todos.findIndex(x => x.id === todoID)
+            if (todos[index].isCompleted === false){
+                e.firstChild.classList.remove("ri-checkbox-blank-line")
+                e.firstChild.classList.add("ri-checkbox-fill")
+                e.parentElement.classList.add("completed")
+                todos[index].isCompleted = true
             } else {
-                e.classList.remove("ri-checkbox-fill")
-                e.classList.add("ri-checkbox-blank-line")
-                let parent = e.parentElement
-                parent.parentElement.classList.remove("completed-todo")
-                isCompleted = false
+                e.firstChild.classList.remove("ri-checkbox-fill")
+                e.firstChild.classList.add("ri-checkbox-blank-line")
+                e.parentElement.classList.remove("completed")
+                todos[index].isCompleted = false
             }
+            localStorage.setItem("todos", JSON.stringify(todos))
         })
     })
 }
