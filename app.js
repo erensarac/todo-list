@@ -1,8 +1,10 @@
+// Global Variables
 const body = document.querySelector("body")
 const todoContainer = document.querySelector("#todo-container")
 const button = document.querySelector("#create-todo-btn")
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // Months Array
 
+// Dom Content Loaded
 document.addEventListener("DOMContentLoaded", (todo) => {
     let todos
     if (localStorage.getItem("todos") === null){
@@ -10,50 +12,74 @@ document.addEventListener("DOMContentLoaded", (todo) => {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"))
         for (let i = 0; i < todos.length; i++){
-            createTodo(todos[i].name, todos[i].createdDate, todos[i].isCompleted)
+            CREATE_TODO(todos[i].id, todos[i].name, todos[i].createdDate, todos[i].isCompleted)
         }
-    } CHECK_TODO()
+    } CHECK_TODO() // Fonksiyonu bir kere calistirmali.
 })
 
+// Create Todo Button Onclick 
 button.addEventListener("click", ()=> { 
+    let time = [
+        new Date().getSeconds(),
+        new Date().getHours(),
+        new Date().getMinutes(),
+        new Date().getDate(),
+        months[new Date().getMonth()],
+        new Date().getFullYear()
+    ]
+    if (time[1] < 10) {time[1] = "0" + time[1]}
+    if (time[2] < 10) {time[2] = "0" + time[2]}
+    let fullTime = `${time[1]}:${time[2]} - ${time[3]} ${time[4]} ${time[5]}`
+    
     const todoInput = document.querySelector("#todo-input").value
-    let time = [new Date().getHours(),new Date().getMinutes(),new Date().getDate(),months[new Date().getMonth()],new Date().getFullYear()]
-    if (time[1] < 10) {
-        time[1] = "0" + time[1]
-    }
-    let fullTime = `${time[0]}:${time[1]} • ${time[2]} ${time[3]} ${time[4]}`
-    if(todoInput == ""){
-        alertMsg("warn", "Please do not leave the input blank, fill the input.")
+    if (todoInput == ""){
+        ALERT_MESSAGE("warn", "Please do not leave the input blank, fill the input.")
     } else {
-        createTodo(todoInput, fullTime)
-        saveLS(todoInput, fullTime)
-        CHECK_TODO()
-        alertMsg("success", "Todo has been successfully created.")
+        let id = `${time[3]}${new Date().getMonth()}${time[1]}${time[2]}${time[0]}${time[5]}`
+        console.log(id)
+        CREATE_TODO(id, todoInput, fullTime, false)
+        SAVE_LOCAL_STORAGE(id, todoInput, fullTime, false)
+        ALERT_MESSAGE("success", "Todo has been successfully created.")
     }
 })
 
-function createTodo(inputValue, time, isCompleted){
+// Create Todo Function
+function CREATE_TODO(todoID, inputValue, time, isCompleted){
     const todoInput = document.querySelector("#todo-input")
-    let listItem = document.createElement("LI")
-    let todoTextContent = document.createElement("DIV")
-    let todoControl = document.createElement("DIV")
-    let pElement = document.createElement("P")
-    let dateText = document.createElement("SPAN")
+    let todoItem = document.createElement("LI")
+    todoItem.setAttribute("id", todoID)
+    todoItem.classList.add("todo-item")
+    let checkBox = document.createElement("DIV")
+    checkBox.classList.add("checkbox")
     let completeIcon = document.createElement("I")
-    todoContainer.appendChild(listItem)
-    listItem.append(todoControl,todoTextContent)
-    todoTextContent.append(pElement, dateText)
-    todoControl.append(completeIcon)
-    listItem.classList.add("todolist-item")
-    todoTextContent.classList.add("todo-text")
-    todoControl.classList.add("todo-control")
-    completeIcon.classList.add("checkbox", "icons", "uncompleted", "ri-checkbox-blank-line")
     completeIcon.setAttribute("id", "complete-btn")
-    dateText.textContent = time
-    pElement.textContent = inputValue
+    if (isCompleted == true){
+        completeIcon.classList.add("ri-checkbox-fill");
+        todoItem.classList.add("completed");
+    } else {
+        completeIcon.classList.add("ri-checkbox-blank-line");
+        todoItem.classList.remove("completed");
+    }
+    let deleteBox = document.createElement("DIV")
+    deleteBox.classList.add("deletebox")
+    let deleteBtn = document.createElement("DIV")
+    deleteBtn.classList.add("delete", "button")
+    deleteBtn.innerHTML = "DELETE"
+    let todoEl = document.createElement("DIV")
+    todoEl.classList.add("todo")
+    let text = document.createElement("P")
+    text.innerHTML = inputValue
+    let createdDate = document.createElement("SPAN")
+    createdDate.innerHTML = time
     todoInput.value = ""
+    todoContainer.append(todoItem)
+    todoItem.append(checkBox, todoEl, deleteBox)
+    checkBox.append(completeIcon)
+    todoEl.append(text, createdDate)
+    deleteBox.append(deleteBtn)
 }
 
+// Todo Mark Completed 
 function CHECK_TODO(){
     let checkBtn = document.querySelectorAll(".checkbox")
     checkBtn.forEach(function(e){
@@ -80,28 +106,35 @@ function CHECK_TODO(){
     })
 }
 
-function saveLS(todo, time) {
+// Save Todo Items to Local Storage
+function SAVE_LOCAL_STORAGE(id, msg, time, truefalse) {
     let todos
     if (localStorage.getItem("todos") === null){todos = []} 
     else {todos = JSON.parse(localStorage.getItem("todos"))}
     todos.push({
-        "name": todo,
+        "id": id,
+        "name": msg,
         "createdDate": time,
-        "isCompleted": false
+        "isCompleted": truefalse
     })
     localStorage.setItem("todos", JSON.stringify(todos))
 }
 
-function deleteAllTodo(){
-    let allTodoItems = document.querySelectorAll(".todolist-item")
+// Delete All Todo Items
+function DELETE_ALL_TODO(){
+    let allTodoItems = document.querySelectorAll(".todo-item")
     for (let i = 0; i < allTodoItems.length; i++){
-        allTodoItems[i].remove()
+        allTodoItems[i].style.opacity = "0"
+        setTimeout(()=> {
+            allTodoItems[i].remove()
+        }, 400)
     }
+    ALERT_MESSAGE("danger", "All todos has been clear.")
     localStorage.removeItem("todos")
-    alertMsg("danger", "All todos has been clear.")
 }
 
-function alertMsg(type, msg){
+// Alert with type and message
+function ALERT_MESSAGE(type, msg){
     if (document.querySelector("#notification") !== null){ 
           document.querySelector("#notification").remove()
     }
