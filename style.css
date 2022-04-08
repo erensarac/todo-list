@@ -34,9 +34,9 @@ body {
 
 .app {
   margin: 10px auto;
-  padding-top: 50px;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-top: 100px;
+  padding-left: 5vw;
+  padding-right: 5vw;
   width: 80%;
   min-height: 100vh;
 }
@@ -285,13 +285,14 @@ body {
 }
 
 .alert {
-  top: 0;
+  margin: 0 auto;
+  top: 2vw;
   right: 0;
   left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  width: 50vw;
   position: fixed;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -303,14 +304,13 @@ body {
   padding-right: 25px;
   padding-top: 15px;
   padding-bottom: 15px;
-  border-radius: 5px;
   -webkit-transition: 1s;
   transition: 1s;
   font-size: 16px;
   opacity: 0;
   font-weight: 500;
-  -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .alert.success {
@@ -322,7 +322,7 @@ body {
 .alert.danger {
   color: #cc0f35;
   background-color: #feecf0;
-  border: 1px solid #fc8181;
+  border: 1px solid #ffb5b5;
 }
 
 .alert.warn {
@@ -362,10 +362,10 @@ body {
   text-decoration: none;
 }
 
-@-webkit-keyframes slide-in-top {
+@-webkit-keyframes slide-in-bottom {
   0% {
-    -webkit-transform: translateY(-1000px);
-            transform: translateY(-1000px);
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
     opacity: 0;
   }
   100% {
@@ -375,10 +375,10 @@ body {
   }
 }
 
-@keyframes slide-in-top {
+@keyframes slide-in-bottom {
   0% {
-    -webkit-transform: translateY(-1000px);
-            transform: translateY(-1000px);
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
     opacity: 0;
   }
   100% {
