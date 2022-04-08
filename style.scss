@@ -25,9 +25,9 @@ body {
 // APP //
 .app {
    margin: 10px auto;
-   padding-top: 50px;
-   padding-left: 2vw;
-   padding-right: 2vw;
+   padding-top: 100px;
+   padding-left: 5vw;
+   padding-right: 5vw;
    width: 80%;
    min-height: 100vh;
 }
@@ -199,11 +199,12 @@ body {
 }
 // POP-UP ALERT //
 .alert {
-   top: 0;
+   margin: 0 auto;
+   top: 2vw;
    right: 0;
    left: 0;
    display: flex;
-   width: 100%;
+   width: 50vw;
    position: fixed;
    justify-content: center;
    align-items: center;
@@ -211,12 +212,11 @@ body {
    padding-right: 25px;
    padding-top: 15px;
    padding-bottom: 15px;
-   border-radius: 5px;
    transition: 1s;
    font-size: 16px;
    opacity: 0;
    font-weight: 500;
-   animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+   animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
    &.success {
       color: #257953;
       background-color: #effaf5;
@@ -225,7 +225,7 @@ body {
    &.danger {
       color: #cc0f35;
       background-color: #feecf0;
-      border: 1px solid #fc8181;
+      border: 1px solid #ffb5b5;
    }
    &.warn {
       color: #946c00;
@@ -258,9 +258,9 @@ body {
    }
 }
 // KEYFRAMES //
-@keyframes slide-in-top {
+@keyframes slide-in-bottom {
    0% {
-      transform: translateY(-1000px);
+      transform: translateY(-500px);
       opacity: 0;
    }
    100% {
