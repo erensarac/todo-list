@@ -1,33 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>My Todo List</title>
-   <link rel="stylesheet" href="style.css">
-   <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap" rel="stylesheet">
-   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> 
+    <title>My Todo List</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
     <main class="app">
-        <h1 id="todo-list-title">My Todo List</h1>
-        <header id="input-header">
-            <div id="input-container">
-                <input id="todo-input" type="text" maxlength="90" placeholder="Write your todo list item on here."></inp>
-                <button id="create-todo-btn" class="todo-button">
-                    <i class="icon add ri-add-line"></i>
-                </button>
+        <div id="main-title">
+            <h1> Todo List </h1>
+        </div>
+        <form id="todo-create-form" action="">
+            <input autocomplete="off" required id="todo-input" type="text" maxlength="50"
+                placeholder="Write your todo list item on here.">
+            </input>
+            <button id="create-todo-button" class="todo-button" type="submit">Create</button>
+        </form>
+        <div id="todo-title">
+            <h2 id="todo-list-title">Tasks</h2>
+            <div>
+                <span id="completed-todo-count"></span>/<span id="total-todo-count"></span>
             </div>
-        </header>
-        <ul id="todo-container"> </ul>
+        </div>
+         <ul id="todo-container"> </ul>
     </main>
     <div class="info">
-        <p>You can access the source code of this website on <a href="https://github.com/erensarac/todo-list" target="_blank">github</a>.</p>
+        <p>You can access the source code of this website on 
+            <a href="https://github.com/erensarac/todo-list" target="_blank">github</a>.
+        </p>
     </div>
     <script src="./app.js"></script>
 </body>
