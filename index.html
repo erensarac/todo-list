@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Todo List</title>
+    <title>TodoList</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,16 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
- </head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8b36e7592c.js" crossorigin="anonymous"></script>
+</head>
 <body>
     <div id="scroll-to-up">
         <i class="ri-arrow-up-line"></i>
     </div>
     <main class="app">
+        <header id="header">
+            <h1>TodoList</h1>
+         </header>
         <form id="create-form" action="">
             <input class="form-input" required autocomplete="off" id="todo-input" maxlength="95" type="text"
                 placeholder="Enter a task"></input>
-            <button id="complete-create-todo" type="submit">Add</button>
+            <i class="ri-add-fill"></i>
+            <button id="complete-create-todo" type="submit">CREATE</button>
         </form>
         <ul id="todo-container">
             <header>
