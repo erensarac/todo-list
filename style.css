@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 *,
 *::before,
 *::after {
@@ -6,10 +8,6 @@
           box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 html {
@@ -20,13 +18,34 @@ body {
   padding-top: 1vw;
   padding-bottom: 1vw;
   list-style: none;
-  color: #fff;
-  background-color: #121212;
+  color: #000;
+  background-color: #f8f9fb;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
 }
 
-/* ABSOULATE DIVS */
+#header {
+  padding: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 12;
+}
+
+#header h1 {
+  font-size: 3.5em;
+  font-family: 'Playfair Display', serif;
+  color: #EF0D50;
+  font-weight: 600;
+}
+
 #scroll-to-up {
   display: -ms-grid;
   display: grid;
@@ -34,7 +53,8 @@ body {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background-color: #212121;
+  color: #EF0D50;
+  background-color: #e5bace;
   border-radius: 50%;
   padding: 10px;
   z-index: 5;
@@ -43,17 +63,18 @@ body {
 }
 
 #scroll-to-up:Hover {
-  background-color: #f46c95;
+  color: #fff;
+  background-color: #EF0D50;
 }
 
 #scroll-to-up i {
   font-size: 2em;
 }
 
-main.app {
+main {
   -ms-flex-line-pack: center;
       align-content: center;
-  margin: 0 auto;
+  margin: 2vw auto 20px auto;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -62,102 +83,118 @@ main.app {
   width: 100%;
 }
 
-div#main-title {
-  position: fixed;
-  top: 1vw;
-  left: 1vw;
-  padding-right: 2px;
-  padding-left: 2px;
-  font-size: 1.75rem;
-  font-weight: 100;
+#create-form {
+  margin-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-}
-
-div#main-title h1 {
-  padding: 5px;
-  color: #fff;
-  margin-bottom: 35px;
-  margin-top: 15px;
-  font-size: 1.25em;
-  font-weight: 500;
-  text-align: left;
-}
-
-#todo-details {
-  margin-bottom: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 20px;
+  position: relative;
   width: 100%;
-  color: #3a3d52;
-}
-
-#todo-details div {
-  padding: 25px;
-  height: 100%;
+  gap: 5px;
+  border: 1px solid #00000030;
+  background-color: #fff;
   border-radius: 5px;
 }
 
-#todo-details #current-time {
+#create-form i {
+  position: absolute;
+  left: 15px;
+  font-size: 1.5em;
+  color: #80838f;
+}
+
+#create-form .form-input {
   width: 100%;
+  height: 100%;
+  padding: 10px 45px;
+  color: #000;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  background-color: transparent;
+  border: 0;
+  text-align: left;
+  border-radius: 5px;
 }
 
-#todo-details #current-time h2 {
-  font-size: 1.5rem;
+#create-form .form-input:focus {
+  outline: 1px solid #EF0D50;
 }
 
-#todo-details #current-time h3 {
-  color: #3a3d52;
-  font-size: 1rem;
-  font-weight: 400;
+#create-form .form-input:focus ~ i {
+  color: #EF0D50;
 }
 
-#todo-details #todo-counter {
-  width: 70%;
-  background-color: #fe8c00;
+#create-form .form-input::-webkit-input-placeholder {
+  color: #80838f;
+  font-weight: 500;
 }
 
-#todo-details #todo-counter h2 {
-  font-size: 1.75rem;
+#create-form .form-input:-ms-input-placeholder {
+  color: #80838f;
+  font-weight: 500;
 }
 
-div#todo-title {
-  padding-right: 2px;
-  padding-left: 2px;
-  font-size: 1rem;
-  font-weight: 400;
+#create-form .form-input::-ms-input-placeholder {
+  color: #80838f;
+  font-weight: 500;
+}
+
+#create-form .form-input::placeholder {
+  color: #80838f;
+  font-weight: 500;
+}
+
+#create-form #complete-create-todo {
+  position: absolute;
+  right: 0;
+  border: 1px solid #00000030;
+  padding: 10px 30px;
+  border: 0;
+  outline: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  border: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #06f;
-  margin-bottom: 5px;
+  font-size: 1em;
+  -webkit-transition: 500ms ease background;
+  transition: 500ms ease background;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #EF0D50;
 }
 
-div#todo-title h2 {
-  width: 100%;
-  color: #3a3d52;
-  font-size: 2rem;
-  font-weight: 300;
-  text-align: left;
-  position: relative;
+#create-form #complete-create-todo:focus {
+  outline: 0;
+  border: 1px solid #000;
 }
 
-ul#todo-container {
+#create-form #complete-create-todo:active {
+  border: 0;
+}
+
+#todo-container {
+  padding: 0 15px;
   margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -174,13 +211,13 @@ ul#todo-container {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  background-color: #212121;
-  border: 2px solid #ffffff30;
-  border-radius: 10px 10px 0 0;
+  background-color: #ffffff;
+  border: 1px solid #00000020;
+  border-radius: 10px;
 }
 
-ul#todo-container header {
-  color: #fff;
+#todo-container header {
+  color: #06182f;
   padding: 20px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -188,15 +225,17 @@ ul#todo-container header {
   width: 100%;
   gap: 20px;
   position: relative;
-  border-bottom: 3px solid #ffffff30;
+  font-weight: 500;
+  font-size: 0.95em;
+  border-bottom: 1px solid #00000020;
 }
 
-ul#todo-container header label {
+#todo-container header label {
   position: absolute;
   right: 15px;
 }
 
-ul#todo-container li.todo-items {
+#todo-container .todo-items {
   padding: 15px 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -212,51 +251,34 @@ ul#todo-container li.todo-items {
   width: 100%;
   position: relative;
   text-align: left;
-  border-bottom: 1px solid #ffffff30;
+  color: #000;
+  border-bottom: 1px solid #00000010;
 }
 
-ul#todo-container li.todo-items div.checkbox {
+#todo-container .todo-items .checkbox {
   display: -ms-grid;
   display: grid;
   place-items: center;
   cursor: pointer;
 }
 
-ul#todo-container li.todo-items div.checkbox i {
-  color: #fff;
-  opacity: 30%;
+#todo-container .todo-items .checkbox i {
+  color: #00000030;
   font-size: 1.75em;
 }
 
-ul#todo-container li.todo-items.completed > .todo-msg > p {
+#todo-container .todo-items.completed > .todo-msg > p {
   opacity: 50%;
-  -webkit-text-decoration: 2px line-through #ffffff30;
-          text-decoration: 2px line-through #ffffff30;
+  -webkit-text-decoration: 2px line-through #00000030;
+          text-decoration: 2px line-through #00000030;
 }
 
-ul#todo-container li.todo-items.completed > div.checkbox > i {
-  color: #f46c95;
+#todo-container .todo-items.completed > div.checkbox > i {
+  color: #EF0D50;
   opacity: 100%;
 }
 
-ul#todo-container li.todo-items:Hover {
-  background-color: #2c2c2c;
-}
-
-ul#todo-container li.todo-items .todo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-ul#todo-container li.todo-items .todo-msg {
+#todo-container .todo-items .todo-msg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -266,14 +288,15 @@ ul#todo-container li.todo-items .todo-msg {
           flex-direction: column;
 }
 
-ul#todo-container li.todo-items .todo-msg p {
+#todo-container .todo-items .todo-msg p {
   display: inline;
+  color: #505d6d;
   font-size: 1em;
-  color: #c9c9c9;
+  font-weight: 400;
   position: relative;
 }
 
-ul#todo-container li.todo-items .todo-date {
+#todo-container .todo-items .todo-date {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,116 +308,9 @@ ul#todo-container li.todo-items .todo-date {
   height: 100%;
 }
 
-ul#todo-container li.todo-items .todo-date p {
+#todo-container .todo-items .todo-date p {
+  font-size: 0.95em;
+  font-weight: 400;
   opacity: 50%;
-}
-
-form#create-form {
-  padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  width: 100%;
-  border: 2px solid #ffffff30;
-  background-color: #212121;
-  border-radius: 10px;
-  gap: 5px;
-}
-
-form#create-form i.fa-solid.fa-pen {
-  position: absolute;
-  left: 20px;
-  color: #80838f;
-  font-size: 1em;
-  -webkit-transition: 300ms;
-  transition: 300ms;
-}
-
-form#create-form #todo-input:focus + i.fa-solid.fa-pen {
-  opacity: 0;
-}
-
-form#create-form .form-input {
-  width: 85%;
-  padding: 10px 30px;
-  background-color: transparent;
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 1em;
-  font-family: 'Poppins', sans-serif;
-  text-align: left;
-}
-
-form#create-form .form-input:focus {
-  outline: 0;
-}
-
-form#create-form .form-input::-webkit-input-placeholder {
-  color: #80838f;
-  font-weight: 500;
-}
-
-form#create-form .form-input:-ms-input-placeholder {
-  color: #80838f;
-  font-weight: 500;
-}
-
-form#create-form .form-input::-ms-input-placeholder {
-  color: #80838f;
-  font-weight: 500;
-}
-
-form#create-form .form-input::placeholder {
-  color: #80838f;
-  font-weight: 500;
-}
-
-form#create-form button#complete-create-todo {
-  padding: 10px 20px;
-  width: 15%;
-  border: 0;
-  outline: 0;
-  color: #eff0f3;
-  background-color: transparent;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  border: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 1em;
-  border-radius: 8px;
-  -webkit-transition: 500ms ease background;
-  transition: 500ms ease background;
-  background-color: #2c2c2c;
-}
-
-form#create-form button#complete-create-todo:focus, form#create-form button#complete-create-todo:Hover {
-  background-color: #f46c95;
-}
-
-form#create-form button#complete-create-todo:active {
-  border: 0;
 }
 /*# sourceMappingURL=style.css.map */
